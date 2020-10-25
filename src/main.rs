@@ -14,16 +14,20 @@ struct Cli {
     path: std::path::PathBuf,
 }
 
+fn find_matches(reader: BufReader<File>, pattern: &str) {
+    for line in reader.lines().filter_map(|result| result.ok()) {
+        if line.contains(pattern) {
+            println!("{}", line);
+        }
+    }
+}
+
 fn main() {
     let args = Cli::from_args();
 
     let f = File::open(&args.path).with_context(|| format!("could not read file {:?}", &args.path)).unwrap();
     let reader = BufReader::new(f);
 
-    for line in reader.lines().filter_map(|result| result.ok()) {
-        if line.contains(&args.pattern) {
-            println!("{}", line);
-        }
-    }
+    find_matches(reader, &args.pattern);
 
 }
