@@ -10,14 +10,15 @@ struct Cli {
     path: std::path::PathBuf,
 }
 
-impl std::fmt::Display for Cli {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "pattern: {}, path: {:?}", self.pattern, self.path)
-    }
-}
-
 fn main() {
     let args = Cli::from_args();
 
-    println!("You called `grrs` with the following arguments: {}", args)
+    let content = std::fs::read_to_string(&args.path).expect("could not read file");
+
+    for line in content.lines() {
+        if line.contains(&args.pattern) {
+            println!("{}", line);
+        }
+    }
+
 }
