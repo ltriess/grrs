@@ -2,6 +2,13 @@
 name = "grrs"
 version = "0.1.0"
 authors = ["ltriess <mail@triess.eu>"]
+license = "MIT"
+description = "A tool to search files"
+readme = "README.md"
+homepage = "https://github.com/ltriess/grrs"
+repository = "https://github.com/ltriess/grrs"
+keywords = ["cli", "search", "demo"]
+categories = ["command-line-utilities"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
